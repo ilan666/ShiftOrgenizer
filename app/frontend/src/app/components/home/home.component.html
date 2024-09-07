@@ -1,0 +1,120 @@
+<div class="page-container">
+  <section>
+    <h4>שלום משתמש</h4>
+    <h4>סמן זמינות למשמרות</h4>
+    <table class="student-shifts-before">
+      <thead>
+        <tr>
+          <th>שבת</th>
+          <th>שישי</th>
+          <th>חמישי</th>
+          <th>רביעי</th>
+          <th>שלישי</th>
+          <th>שני</th>
+          <th>ראשון</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td (click)="appointShift($event, 'שבת', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'שישי', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'חמישי', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'רביעי', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'שלישי', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'שני', 'בוקר')"></td>
+          <td (click)="appointShift($event, 'ראשון', 'בוקר')"></td>
+          <td>בוקר</td>
+        </tr>
+        <tr>
+          <td (click)="appointShift($event, 'שבת', 'ערב')"></td>
+          <td (click)="appointShift($event, 'שישי', 'ערב')"></td>
+          <td (click)="appointShift($event, 'חמישי', 'ערב')"></td>
+          <td (click)="appointShift($event, 'רביעי', 'ערב')"></td>
+          <td (click)="appointShift($event, 'שלישי', 'ערב')"></td>
+          <td (click)="appointShift($event, 'שני', 'ערב')"></td>
+          <td (click)="appointShift($event, 'ראשון', 'ערב')"></td>
+          <td>ערב</td>
+        </tr>
+        <tr>
+          <td (click)="appointShift($event, 'שבת', 'לילה')"></td>
+          <td (click)="appointShift($event, 'שישי', 'לילה')"></td>
+          <td (click)="appointShift($event, 'חמישי', 'לילה')"></td>
+          <td (click)="appointShift($event, 'רביעי', 'לילה')"></td>
+          <td (click)="appointShift($event, 'שלישי', 'לילה')"></td>
+          <td (click)="appointShift($event, 'שני', 'לילה')"></td>
+          <td (click)="appointShift($event, 'ראשון', 'לילה')"></td>
+          <td>לילה</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="buttons-container">
+      <button class="secondary-button">ממשק מנהל</button>
+      <button class="primary-button" [disabled]="selectedShifts.length == 0">
+        שלח משמרות
+      </button>
+      <button class="secondary-button" (click)="showChangeShiftWindow = true">
+        בקשה להחלפת משמרת
+      </button>
+    </div>
+  </section>
+  <section>
+    <h4>טבלת משמרות עדכנית</h4>
+    <h5>תאריך - תאריך</h5>
+    <table>
+      <thead>
+        <tr>
+          <th>שבת</th>
+          <th>שישי</th>
+          <th>חמישי</th>
+          <th>רביעי</th>
+          <th>שלישי</th>
+          <th>שני</th>
+          <th>ראשון</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>בוקר</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>ערב</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>לילה</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+<div class="change-shift-window" *ngIf="showChangeShiftWindow">
+  <div class="change-shift-window-container">
+    <button class="close-button" (click)="showChangeShiftWindow = false">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h5>בקשה להחלפת משמרת</h5>
+    <p>!לפני כל מילוי הטופס נא לוודא הסכמה משני הצדדים</p>
+  </div>
+</div>
