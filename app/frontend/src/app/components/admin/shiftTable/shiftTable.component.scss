@@ -1,0 +1,94 @@
+@import "../../../../styles.scss";
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  i {
+    font-size: 84px;
+    color: $textColor;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #333333;
+  background-color: $textColor;
+  text-align: center;
+  width: 120px;
+  height: 60px;
+  font-size: 20px;
+}
+
+td:last-child {
+  background-color: darken($color: $textColor, $amount: 10);
+  width: 140px;
+}
+
+th {
+  background-color: darken($color: $textColor, $amount: 10);
+}
+
+.table-container {
+  position: relative;
+}
+
+.week-selector-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+
+  button {
+    width: 60px;
+    height: 60px;
+    color: #f4f4f4;
+    background-color: transparent;
+    border: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      cursor: pointer;
+
+      i {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  i {
+    font-size: 48px;
+    transition: all 0.3s ease;
+  }
+}
+
+.table-commands-container {
+  margin-top: 64px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr;
+}
+
+.primary-button {
+  p {
+    font-size: 18px;
+    color: #333333;
+    letter-spacing: 0.5px;
+  }
+}
+
+.openShifts {
+  background-color: rgb(203, 203, 203);
+
+  &:hover {
+    background-color: darken($color: rgb(203, 203, 203), $amount: 10);
+  }
+}

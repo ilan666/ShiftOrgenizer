@@ -14,15 +14,18 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "strictPropertyInitialization": false,
+    "target": "ES6",
+    "module": "CommonJS",
+    "lib": ["ES2022", "dom"]
   },
+
+  "include": [
+    "src/**/*" // Ensure this includes the path to your src directory
+  ],
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

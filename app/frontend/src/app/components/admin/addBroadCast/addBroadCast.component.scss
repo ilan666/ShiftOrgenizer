@@ -1,0 +1,47 @@
+@import "../../../../styles.scss";
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  i {
+    font-size: 84px;
+    color: $textColor;
+  }
+}
+
+form {
+  width: 50%;
+  text-align: center;
+}
+
+.form-group {
+  textarea {
+    width: 100%;
+    height: 300px;
+    text-align: right;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+
+  button {
+    width: 30%;
+  }
+
+  button:last-child {
+    color: $textColor;
+  }
+}

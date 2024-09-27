@@ -4,6 +4,10 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { FormsModule } from '@angular/forms';
+import { AnnouncerWindowComponent } from '../announcer-window/announcer-window.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
@@ -13,6 +17,10 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     RouterModule.forChild(routes),
     MatButtonModule,
     MatIconModule,
+    NzSelectModule,
+    NzFormModule,
+    FormsModule,
+    AnnouncerWindowComponent,
   ],
   exports: [RouterModule],
   declarations: [HomeComponent],

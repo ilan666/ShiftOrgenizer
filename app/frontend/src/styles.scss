@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
-$secondaryColor: #50e3c2;
-$primaryColor: #4a90e2;
-$accentColor: #f5a623;
-$backgroundColor: #f4f4f4;
-$textColor: #4a4a4a;
+$secondaryColor: #222e50;
+$primaryColor: #b5ca8d;
+$accentColor: #8bb174;
+$backgroundColor: #426b69;
+$textColor: #f4f4f4;
 
 body,
 html {
@@ -13,6 +13,10 @@ html {
 
 body {
   background-color: $backgroundColor;
+  background-image: url("../assets/home-background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
@@ -51,38 +55,44 @@ p {
 
 .primary-button {
   font-size: 1rem;
-  padding: 16px 32px;
-  color: $backgroundColor;
+  padding: 12px 32px;
+  color: #333333;
   background-color: $primaryColor;
   border-radius: 10px;
   border: none;
   transition: all 0.3s ease;
-}
 
-.primary-button:hover {
-  background-color: darken($color: $primaryColor, $amount: 10);
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+  &:hover {
+    background-color: darken($color: $primaryColor, $amount: 10);
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: darken($color: $primaryColor, $amount: 20);
+  }
 }
 
 .secondary-button {
   font-size: 1rem;
-  padding: 16px 32px;
-  color: $backgroundColor;
-  background-color: $accentColor;
+  padding: 12px 32px;
+  color: #333333;
   border-radius: 10px;
-  border: none;
   transition: all 0.3s ease;
-}
+  border: 2px solid $secondaryColor;
+  background-color: transparent;
 
-.secondary-button:hover {
-  background-color: darken($color: $accentColor, $amount: 10);
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+  &:hover {
+    background-color: $secondaryColor;
+    color: $textColor;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
 }
 
 input {
   padding: 10px 10px 10px 5px;
+  font-size: 20px;
   width: 100%;
   outline: none;
   transition: border-color 0.3s;
@@ -91,10 +101,11 @@ input {
   color: $textColor;
   border: none;
   border-bottom: 1px solid $textColor;
-}
+  background-color: $backgroundColor;
 
-input:focus {
-  border-bottom: 3px solid $primaryColor;
+  &:focus {
+    border-bottom: 3px solid $primaryColor;
+  }
 }
 
 label {
@@ -117,11 +128,129 @@ input:valid ~ label {
   color: $primaryColor;
 }
 
+.form-group {
+  position: relative;
+}
+
 a {
   color: $primaryColor;
   transition: all 0.3s ease;
+
+  &:hover {
+    color: $secondaryColor;
+  }
 }
 
-a:hover {
-  color: $secondaryColor;
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 4rem; /* Adjust to small screen */
+  }
+
+  h2 {
+    font-size: 3rem; /* Adjust to small screen */
+  }
+
+  h3 {
+    font-size: 2.5rem; /* Adjust to small screen */
+  }
+
+  h4 {
+    font-size: 2rem; /* Adjust to small screen */
+  }
+
+  h5 {
+    font-size: 1rem; /* Adjust to small screen */
+  }
+}
+
+/* Tablet Styles (min-width: 481px and max-width: 768px) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  h1 {
+    font-size: 8rem; /* Medium size for tablets */
+  }
+
+  h2 {
+    font-size: 5rem; /* Medium size for tablets */
+  }
+
+  h3 {
+    font-size: 3rem; /* Medium size for tablets */
+  }
+
+  h4 {
+    font-size: 2rem; /* Medium size for tablets */
+  }
+
+  h5 {
+    font-size: 1.25rem; /* Medium size for tablets */
+  }
+}
+
+/* Small Laptop Styles (min-width: 769px and max-width: 1024px) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  h1 {
+    font-size: 9rem; /* Medium-Large size for small laptops */
+  }
+
+  h2 {
+    font-size: 5.5rem; /* Medium-Large size for small laptops */
+  }
+
+  h3 {
+    font-size: 3.5rem; /* Medium-Large size for small laptops */
+  }
+
+  h4 {
+    font-size: 2.25rem; /* Medium-Large size for small laptops */
+  }
+
+  h5 {
+    font-size: 1.5rem; /* Medium-Large size for small laptops */
+  }
+}
+
+/* Desktop Styles (min-width: 1025px and max-width: 1440px) */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  h1 {
+    font-size: 10rem; /* Larger size for desktops */
+  }
+
+  h2 {
+    font-size: 6rem; /* Larger size for desktops */
+  }
+
+  h3 {
+    font-size: 4rem; /* Larger size for desktops */
+  }
+
+  h4 {
+    font-size: 2.5rem; /* Larger size for desktops */
+  }
+
+  h5 {
+    font-size: 1.75rem; /* Larger size for desktops */
+  }
+}
+
+/* Large Desktop Styles (min-width: 1441px) */
+@media only screen and (min-width: 1441px) {
+  h1 {
+    font-size: 11.089rem; /* Original size */
+  }
+
+  h2 {
+    font-size: 6.854rem; /* Original size */
+  }
+
+  h3 {
+    font-size: 4.236rem; /* Original size */
+  }
+
+  h4 {
+    font-size: 2.618rem; /* Original size */
+  }
+
+  h5 {
+    font-size: 1.618rem; /* Original size */
+  }
 }

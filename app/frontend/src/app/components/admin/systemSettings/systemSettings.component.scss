@@ -1,0 +1,42 @@
+@import "../../../../styles.scss";
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  i {
+    font-size: 84px;
+    color: $textColor;
+  }
+}
+
+.options {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 40px;
+  margin: 64px 0px;
+
+  li {
+    width: 30%;
+    text-align: center;
+    font-size: 24px;
+    border: 3px solid $primaryColor;
+    border-radius: 10px;
+    color: $primaryColor;
+    padding: 32px 0px;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $primaryColor;
+      color: #333333;
+      cursor: pointer;
+    }
+  }
+}

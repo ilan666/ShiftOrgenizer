@@ -1,0 +1,69 @@
+<section @fadeUp>
+  <i class="material-icons">sync</i>
+  <h4>בקשות להחלפת משמרת</h4>
+  <h5>אנא אשר את הבקשות הבאות</h5>
+  <div class="requests-container">
+    <div class="request-card">
+      <h6>בקשה חדשה</h6>
+      <h5>User1</h5>
+      <p>יחליף את</p>
+      <h5>User2</h5>
+      <p><span>תאריך</span> :בתאריך</p>
+      <p><span>בוקר</span> :משמרת</p>
+      <button class="secondary-button" (click)="approveSwitch()">
+        אשר החלפה
+      </button>
+    </div>
+    <div class="request-card">
+      <h6>בקשה חדשה</h6>
+      <h5>User1</h5>
+      <p>יחליף את</p>
+      <h5>User2</h5>
+      <p><span>תאריך</span> :בתאריך</p>
+      <p><span>בוקר</span> :משמרת</p>
+      <button class="secondary-button" (click)="approveSwitch()">
+        אשר החלפה
+      </button>
+    </div>
+    <div class="request-card">
+      <h6>בקשה חדשה</h6>
+      <h5>User1</h5>
+      <p>יחליף את</p>
+      <h5>User2</h5>
+      <p><span>תאריך</span> :בתאריך</p>
+      <p><span>בוקר</span> :משמרת</p>
+      <button class="secondary-button" (click)="approveSwitch()">
+        אשר החלפה
+      </button>
+    </div>
+    <div class="request-card">
+      <h6>בקשה חדשה</h6>
+      <h5>User1</h5>
+      <p>יחליף את</p>
+      <h5>User2</h5>
+      <p><span>תאריך</span> :בתאריך</p>
+      <p><span>בוקר</span> :משמרת</p>
+      <button class="secondary-button" (click)="approveSwitch()">
+        אשר החלפה
+      </button>
+    </div>
+    <div class="request-card">
+      <h6>בקשה חדשה</h6>
+      <h5>User1</h5>
+      <p>יחליף את</p>
+      <h5>User2</h5>
+      <p><span>תאריך</span> :בתאריך</p>
+      <p><span>בוקר</span> :משמרת</p>
+      <button class="secondary-button" (click)="approveSwitch()">
+        אשר החלפה
+      </button>
+    </div>
+  </div>
+
+  <button class="primary-button filter">הצג בקשות שאושרו</button>
+</section>
+
+<app-announcer-window
+  [message]="'!החלפת משמרת אושרה'"
+  [show]="success"
+></app-announcer-window>

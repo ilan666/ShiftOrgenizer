@@ -1,0 +1,100 @@
+<ng-template #noUser>
+  <section @fadeUp>
+    <i class="material-icons">manage_accounts</i>
+    <h4>ערוך הגדרות משתמש</h4>
+    <h5>חפש משתמש קיים</h5>
+    <div class="search-container">
+      <input
+        #username
+        type="text"
+        id="name"
+        name="name"
+        ngModel
+        required
+        autocomplete="off"
+      />
+      <label for="name">שם משתמש</label>
+    </div>
+    <button class="primary-button" (click)="findUser(username.value)">
+      חפש משתמש
+    </button>
+    <p class="no-user-found" *ngIf="showError" @fadeUp>משתמש לא קיים</p>
+  </section>
+</ng-template>
+<section *ngIf="userExists; else noUser" @fadeUp>
+  <i class="material-icons">manage_accounts</i>
+  <h4 style="direction: rtl">
+    עורך את:
+    <span style="text-decoration: underline; font-size: bold">{{
+      user.username
+    }}</span>
+  </h4>
+  <ul class="options">
+    <li>שנה סיסמה</li>
+    <li (click)="showUserColor = true">
+      <span
+        class="user-color"
+        [ngStyle]="{ 'background-color': user.color }"
+      ></span>
+      שנה צבע
+    </li>
+    <li (click)="showUserInfo = true">הצג/שנה פרטי משתמש</li>
+    <li (click)="removeUser()">מחק משתמש</li>
+    <li>הצג פעילות</li>
+    <li (click)="makeAsAdmin()" [ngClass]="{ highlight: isAdmin }">
+      <span *ngIf="!isAdmin">הגדר כמנהל</span>
+      <span *ngIf="isAdmin">הסר מנהל</span>
+    </li>
+  </ul>
+  <button class="primary-button" (click)="userExists = false">חזור</button>
+</section>
+
+<div class="window-container" *ngIf="showUserInfo" @fadeUp>
+  <div class="window-content">
+    <i class="material-icons close-button" (click)="showUserInfo = false"
+      >close</i
+    >
+    <h5>פרטי משתמש</h5>
+    <div class="info-container">
+      <div>
+        <strong>שם מלא: </strong>
+        <span>{{ user.firstname }} {{ user.lastname }}</span>
+      </div>
+      <div>
+        <strong>שם משתמש: </strong> <span>{{ user.username }}</span>
+      </div>
+      <div>
+        <strong>טלפון נייד: </strong> <span>{{ user.phone }}</span>
+      </div>
+      <div><strong>תאריך תחילת עבודה: </strong> <span>תאריך</span></div>
+      <div><strong>סך הכל משמרות שהוגשו: </strong> <span>תאריך</span></div>
+      <div><strong>סך הכל משמרות שקיבל: </strong> <span>תאריך</span></div>
+      <div><strong>סך הכל בקשות להחלפה: </strong> <span>תאריך</span></div>
+      <div><strong>סך הכל בקשות שאושרו: </strong> <span>תאריך</span></div>
+      <div>
+        <strong>משתמש מנהל: </strong> <span>{{ user.isAdmin }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="window-container" *ngIf="showUserColor" @fadeUp>
+  <div class="window-content">
+    <i class="material-icons close-button" (click)="showUserColor = false"
+      >close</i
+    >
+    <h5>בחר צבע למשתמש</h5>
+    <input
+      type="color"
+      id="colorPicker"
+      name="colorPicker"
+      value="{{ user.color }}"
+    />
+    <button class="primary-button">בחר צבע</button>
+  </div>
+</div>
+
+<app-announcer-window
+  [message]="'!משתמש נמחק בהצלחה'"
+  [show]="userDeleted"
+></app-announcer-window>

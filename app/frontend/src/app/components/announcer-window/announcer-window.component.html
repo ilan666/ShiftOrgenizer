@@ -1,0 +1,9 @@
+<div class="success-window-container" *ngIf="show" @fadeUp>
+  <div class="success-window">
+    <button class="close-button" (click)="show = !show">
+      <mat-icon>close</mat-icon>
+    </button>
+    <i class="material-icons" [ngClass]="iconStyles[icon]">{{ icon }}</i>
+    <h4>{{ message }}</h4>
+  </div>
+</div>

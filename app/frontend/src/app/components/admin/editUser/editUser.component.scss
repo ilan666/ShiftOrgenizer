@@ -1,0 +1,140 @@
+@import "../../../../styles.scss";
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  i {
+    font-size: 84px;
+    color: $textColor;
+  }
+}
+
+.search-container {
+  position: relative;
+  width: 50%;
+  margin: 32px 0px;
+}
+
+.options {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 40px;
+  margin: 64px 0px;
+
+  li {
+    width: 30%;
+    text-align: center;
+    font-size: 24px;
+    border: 3px solid $primaryColor;
+    border-radius: 10px;
+    color: $primaryColor;
+    padding: 32px 0px;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $primaryColor;
+      color: #333333;
+      cursor: pointer;
+    }
+
+    &:nth-of-type(4) {
+      background-color: #fba6ad;
+      color: #333333;
+
+      &:hover {
+        background-color: darken($color: #fba6ad, $amount: 10);
+      }
+
+      &:active {
+        background-color: darken($color: #fba6ad, $amount: 20);
+      }
+    }
+
+    &:nth-of-type(2) {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+  }
+}
+
+.no-user-found {
+  text-align: center;
+  color: #fba6ad;
+  margin-top: 16px;
+}
+
+.highlight {
+  background-color: $primaryColor;
+  color: #333333 !important;
+
+  &:hover {
+    background-color: darken($color: $primaryColor, $amount: 10);
+  }
+}
+
+.window-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  .window-content {
+    padding: 64px;
+    background-color: $textColor;
+    color: #333333;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.3);
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      font-size: 20px;
+      background-color: $textColor;
+      transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+      cursor: pointer;
+      color: $accentColor;
+    }
+
+    .info-container {
+      direction: rtl;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    h5 {
+      color: #333333;
+      margin-bottom: 16px;
+      text-decoration: underline;
+    }
+  }
+}
+
+.user-color {
+  width: 30px;
+  height: 30px;
+  border: 2px #333333 solid;
+  display: inline-block;
+}

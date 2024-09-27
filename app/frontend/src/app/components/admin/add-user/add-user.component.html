@@ -1,0 +1,40 @@
+<section @fadeUp>
+  <i class="material-icons">person_add</i>
+  <h4>הוספת משתמש</h4>
+  <h5>נא מלא את השדות הבאים</h5>
+
+  <form
+    #addUserForm="ngForm"
+    autocapitalize="off"
+    autocomplete="off"
+    (ngSubmit)="createNewUser(addUserForm)"
+  >
+    <div class="form-group">
+      <input type="text" id="name" name="name" ngModel required />
+      <label for="name">שם משתמש</label>
+    </div>
+    <div class="form-group">
+      <input type="text" id="firstname" name="firstname" ngModel required />
+      <label for="firstname">שם</label>
+    </div>
+    <div class="form-group">
+      <input type="text" id="lastname" name="lastname" ngModel required />
+      <label for="lastname">שם משפחה</label>
+    </div>
+    <div class="form-group">
+      <input type="number" id="phone" name="phone" ngModel required />
+      <label for="phone">טלפון</label>
+    </div>
+    <div class="form-group">
+      <input type="password" id="password" name="password" ngModel required />
+      <label for="password">סיסמה ראשונית</label>
+      <p>הסיסמה תשתנה ע"י העובד לאחר כניסה ראשונה</p>
+    </div>
+    <button class="primary-button" type="submit">הוסף משתמש</button>
+  </form>
+</section>
+
+<app-announcer-window
+  [message]="'!משתמש נוצר בהצלחה'"
+  [show]="success"
+></app-announcer-window>

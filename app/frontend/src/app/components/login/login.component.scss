@@ -4,23 +4,47 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("../../../../assets/login-background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .content-container {
   padding: 64px;
   text-align: center;
-  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.3);
-  width: 350px;
+  width: 550px;
+  background-color: rgba($color: $textColor, $alpha: 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+
+  p {
+    color: #fba6ad;
+  }
 }
 
 .form-group {
   position: relative;
   width: 100%;
   margin-bottom: 16px;
+
+  input {
+    background-color: transparent;
+  }
 }
 
 .content-container button {
   margin: 16px 0px 12px 0px;
+}
+
+.logo {
+  background-image: url("../../../../assets/app-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 330px;
+  height: 200px;
 }

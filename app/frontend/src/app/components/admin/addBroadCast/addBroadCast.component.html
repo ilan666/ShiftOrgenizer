@@ -1,0 +1,44 @@
+<section @fadeUp>
+  <i class="material-icons">feedback</i>
+  <h4>הוספת הודעה לכלל העובדים</h4>
+  <h5>אנא מלא את השדות הבאים</h5>
+  <form autocapitalize="off" autocomplete="off" #messageForm="ngForm">
+    <div class="form-group">
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="form.title"
+        required
+      />
+      <label for="title">כותרת</label>
+    </div>
+    <div class="form-group">
+      <textarea
+        type="text"
+        id="body"
+        name="body"
+        placeholder="...לתשומת לב העובדים"
+        required
+        [(ngModel)]="form.body"
+      ></textarea>
+    </div>
+    <div class="button-container">
+      <button
+        class="primary-button"
+        type="submit"
+        (click)="postBroadcast(messageForm)"
+      >
+        פרסם הודעה
+      </button>
+      <button class="secondary-button" (click)="resetForm(messageForm)">
+        נקה
+      </button>
+    </div>
+  </form>
+</section>
+
+<app-announcer-window
+  [message]="'!הודעה פורסמה בדף הבית'"
+  [show]="success"
+></app-announcer-window>
