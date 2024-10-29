@@ -1,503 +1,24 @@
 <div class="page-container">
+  <div class="page-fade" [ngClass]="{ opensidebar: isOpen }"></div>
   <div class="logo"></div>
-  <h4 style="text-align: center" @fadeUp>
-    שלום {{ currentUser.firstname }} {{ currentUser.lastname }}
-  </h4>
-  <section @fadeUp *ngIf="showShiftTable">
-    <h5>סמן זמינות למשמרות</h5>
-    <div class="table-container">
-      <div class="table-commands-container">
-        <button
-          class="primary-button before"
-          [disabled]="selectedShifts[0] === null"
-          (click)="sendShifts()"
-        >
-          שלח משמרות
-        </button>
-        <div class="empty"></div>
-        <div class="week-selector-container">
-          <button><i class="material-icons">arrow_forward_ios</i></button>
-          <h4>
-            מציג שבוע:
-            <span style="text-decoration: underline">תאריך - תאריך</span>
-          </h4>
-          <button><i class="material-icons">arrow_back_ios</i></button>
-        </div>
-      </div>
-      <div class="table-scroll-container">
-        <table class="student-shifts-before">
-          <thead>
-            <tr>
-              <th>שבת</th>
-              <th>שישי</th>
-              <th>חמישי</th>
-              <th>רביעי</th>
-              <th>שלישי</th>
-              <th>שני</th>
-              <th>ראשון</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td
-                (click)="appointShift($event, 'שבת בוקר')"
-                [ngClass]="{ selected: isShiftSelected('שבת בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שבת בוקר') }"
-                >
-                  <p class="day">&#x2713; שבת בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שבת בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שישי בוקר')"
-                [ngClass]="{ selected: isShiftSelected('שישי בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שישי בוקר') }"
-                >
-                  <p class="day">&#x2713; שישי בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שישי בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'חמישי בוקר')"
-                [ngClass]="{ selected: isShiftSelected('חמישי בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('חמישי בוקר') }"
-                >
-                  <p class="day">&#x2713; חמישי בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('חמישי בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'רביעי בוקר')"
-                [ngClass]="{ selected: isShiftSelected('רביעי בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('רביעי בוקר') }"
-                >
-                  <p class="day">&#x2713; רביעי בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('רביעי בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שלישי בוקר')"
-                [ngClass]="{ selected: isShiftSelected('שלישי בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שלישי בוקר') }"
-                >
-                  <p class="day">&#x2713; שלישי בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שלישי בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שני בוקר')"
-                [ngClass]="{ selected: isShiftSelected('שני בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שני בוקר') }"
-                >
-                  <p class="day">&#x2713; שני בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שני בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'ראשון בוקר')"
-                [ngClass]="{ selected: isShiftSelected('ראשון בוקר') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('ראשון בוקר') }"
-                >
-                  <p class="day">&#x2713; ראשון בוקר</p>
-                  <p class="time">08:00 - 16:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('ראשון בוקר')"
-                  >check_circle</i
-                >
-              </td>
-              <td>
-                בוקר
-                <div>08:00 - 16:00</div>
-              </td>
-            </tr>
-            <tr>
-              <td
-                (click)="appointShift($event, 'שבת ערב')"
-                [ngClass]="{ selected: isShiftSelected('שבת ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שבת ערב') }"
-                >
-                  <p class="day">&#x2713; שבת ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שבת ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שישי ערב')"
-                [ngClass]="{ selected: isShiftSelected('שישי ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שישי ערב') }"
-                >
-                  <p class="day">&#x2713; שישי ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שישי ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'חמישי ערב')"
-                [ngClass]="{ selected: isShiftSelected('חמישי ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('חמישי ערב') }"
-                >
-                  <p class="day">&#x2713; חמישי ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('חמישי ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'רביעי ערב')"
-                [ngClass]="{ selected: isShiftSelected('רביעי ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('רביעי ערב') }"
-                >
-                  <p class="day">&#x2713; רביעי ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('רביעי ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שלישי ערב')"
-                [ngClass]="{ selected: isShiftSelected('שלישי ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שלישי ערב') }"
-                >
-                  <p class="day">&#x2713; שלישי ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שלישי ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שני ערב')"
-                [ngClass]="{ selected: isShiftSelected('שני ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שני ערב') }"
-                >
-                  <p class="day">&#x2713; שני ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שני ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'ראשון ערב')"
-                [ngClass]="{ selected: isShiftSelected('ראשון ערב') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('ראשון ערב') }"
-                >
-                  <p class="day">&#x2713; ראשון ערב</p>
-                  <p class="time">16:00 - 00:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('ראשון ערב')"
-                  >check_circle</i
-                >
-              </td>
-              <td>
-                ערב
-                <div style="font-size: 14px">16:00 - 00:00</div>
-              </td>
-            </tr>
-            <tr>
-              <td
-                (click)="appointShift($event, 'שבת לילה')"
-                [ngClass]="{ selected: isShiftSelected('שבת לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שבת לילה') }"
-                >
-                  <p class="day">&#x2713; שבת לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שבת לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שישי לילה')"
-                [ngClass]="{ selected: isShiftSelected('שישי לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שישי לילה') }"
-                >
-                  <p class="day">&#x2713; שישי לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שישי לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'חמישי לילה')"
-                [ngClass]="{ selected: isShiftSelected('חמישי לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('חמישי לילה') }"
-                >
-                  <p class="day">&#x2713; חמישי לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('חמישי לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'רביעי לילה')"
-                [ngClass]="{ selected: isShiftSelected('רביעי לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('רביעי לילה') }"
-                >
-                  <p class="day">&#x2713; רביעי לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('רביעי לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שלישי לילה')"
-                [ngClass]="{ selected: isShiftSelected('שלישי לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שלישי לילה') }"
-                >
-                  <p class="day">&#x2713; שלישי לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שלישי לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'שני לילה')"
-                [ngClass]="{ selected: isShiftSelected('שני לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('שני לילה') }"
-                >
-                  <p class="day">&#x2713; שני לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('שני לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td
-                (click)="appointShift($event, 'ראשון לילה')"
-                [ngClass]="{ selected: isShiftSelected('ראשון לילה') }"
-              >
-                <div
-                  class="appointment-container"
-                  [ngClass]="{ visible: isShiftSelected('ראשון לילה') }"
-                >
-                  <p class="day">&#x2713; ראשון לילה</p>
-                  <p class="time">00:00 - 08:00</p>
-                </div>
-                <i
-                  class="material-icons check-icon"
-                  *ngIf="!isShiftSelected('ראשון לילה')"
-                  >check_circle</i
-                >
-              </td>
-              <td>
-                לילה
-                <div style="font-size: 14px">00:00 - 08:00</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-  <section @fadeUp>
-    <h5>טבלת משמרות עדכנית</h5>
-    <h5>תאריך - תאריך</h5>
-    <div class="table-container">
-      <div class="table-commands-container">
-        <button class="primary-button" (click)="showChangeShiftWindow = true">
-          בקשה להחלפת משמרת
-        </button>
-        <button class="print-button"><i class="material-icons">print</i></button>
-        <div class="week-selector-container">
-          <button><i class="material-icons">arrow_forward_ios</i></button>
-          <h4>
-            מציג שבוע:
-            <span style="text-decoration: underline">תאריך - תאריך</span>
-          </h4>
-          <button><i class="material-icons">arrow_back_ios</i></button>
-        </div>
-      </div>
-      <div class="table-scroll-container">
-        <table>
-          <thead>
-            <tr>
-              <th>שבת</th>
-              <th>שישי</th>
-              <th>חמישי</th>
-              <th>רביעי</th>
-              <th>שלישי</th>
-              <th>שני</th>
-              <th>ראשון</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>בוקר</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>ערב</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>לילה</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="broadcast-container">
-        <h5>{{ message.header }}</h5>
-        <p>{{ message.message }}</p>
-      </div>
-    </div>
-    <div class="current-shift-container">
-      <h5>:עובדים היום</h5>
-      <div><i class="material-icons">light_mode</i> בוקר user1</div>
-      <div><i class="material-icons">wb_twilight</i> ערב user2</div>
-      <div><i class="material-icons">dark_mode</i> לילה user3</div>
-    </div>
-  </section>
+  <div class="sidemenu-bar" [ngClass]="{ opensidebar: isOpen }">
+    <button
+      class="sidemenu-admin-button"
+      (click)="routeToAdmin()"
+      *ngIf="currentUser.isAdmin"
+    >
+      <i class="material-icons">admin_panel_settings</i>
+    </button>
+    <button class="sidemenu-logout-button" (click)="logOut()">
+      <i class="material-icons">logout</i>
+    </button>
+  </div>
   <div class="button-container">
+    <div class="menu-icon" (click)="toggleMenu()">
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+    </div>
     <button
       class="admin-button"
       (click)="routeToAdmin()"
@@ -509,6 +30,25 @@
       <i class="material-icons">logout</i>
     </button>
   </div>
+  <h4
+    style="
+      text-align: center;
+      direction: rtl;
+      padding: 32px 0px;
+      text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    "
+    @fadeUp
+  >
+    שלום {{ currentUser.firstname }} {{ currentUser.lastname }}
+  </h4>
+  <div class="broadcast-container">
+    <h5>{{ message.header }}</h5>
+    <p>{{ message.message }}</p>
+  </div>
+  <div class="open-shifts-background" *ngIf="showShiftTable">
+    <app-user-shift-management></app-user-shift-management>
+  </div>
+  <app-user-shift-display></app-user-shift-display>
 </div>
 <div class="change-shift-window" *ngIf="showChangeShiftWindow" @fadeUp>
   <div class="change-shift-window-container">
@@ -543,10 +83,10 @@
 </div>
 
 <app-announcer-window
-  [message]="'!משמרות נשלחו בהצלחה'"
+  [message]="'משמרות נשמרו בהצלחה!'"
   [show]="success"
 ></app-announcer-window>
 <app-announcer-window
-  [message]="'!בקשה נשלחה בהצלחה'"
+  [message]="'בקשה נשלחה בהצלחה!'"
   [show]="successSwitchRequest"
 ></app-announcer-window>

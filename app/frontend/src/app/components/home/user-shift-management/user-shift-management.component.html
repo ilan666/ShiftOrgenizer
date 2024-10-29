@@ -1,0 +1,25 @@
+<section>
+  <div class="headers">
+    <h4>
+      הגשת אילוצים:
+      <span style="text-decoration: underline; color: #b5ca8d">פתוח</span>
+    </h4>
+    <h5>סמן זמינות למשמרות</h5>
+  </div>
+  <div class="week-selector-container" *ngIf="currentDisplay === 'שבועי'">
+    <button>
+      <i class="material-icons">arrow_forward_ios</i>
+    </button>
+    <h4>
+      מציג שבוע:
+      <span style="text-decoration: underline">תאריך - תאריך</span>
+    </h4>
+    <button>
+      <i class="material-icons">arrow_back_ios</i>
+    </button>
+  </div>
+  <div class="table-container">
+    <app-calendar (selectedShiftsChange)="updateShifts($event)"></app-calendar>
+  </div>
+  <button class="primary-button" (click)="sendShifts()">שלח משמרות</button>
+</section>

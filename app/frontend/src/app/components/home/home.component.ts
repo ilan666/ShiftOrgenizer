@@ -5,6 +5,7 @@ import { AppConfig, MessageConfig } from '../../../appConfig';
 import { UserService } from '../../services/user.service';
 import { User } from '../../entities/user';
 import { AuthService } from '../../services/auth.service';
+import { CalendarService } from '../../services/calendar.service';
 
 @Component({
   selector: 'app-home',
@@ -35,15 +36,14 @@ export class HomeComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  selectedShifts: { day: string }[] = [];
   showChangeShiftWindow = false;
-  scheduleOptions = ['שבועי', 'חודשי'];
-  selectedScheduleOption: string | null = null;
   showShiftTable = AppConfig.openShiftRequests;
   success = false;
   successSwitchRequest = false;
   message = MessageConfig;
   currentUser: User;
+  selectedShifts: { day: string }[] = [];
+  isOpen = false;
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe({
@@ -57,41 +57,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  appointShift(event: MouseEvent, day: string): void {
-    const target = event.target as HTMLElement;
-
-    const shiftIndex = this.selectedShifts.findIndex(
-      (shift) => shift.day === day
-    );
-
-    if (shiftIndex !== -1) {
-      // If the shift already exists, remove it from the array
-      this.selectedShifts.splice(shiftIndex, 1);
-    } else {
-      // If the shift doesn't exist, add it to the array
-      this.selectedShifts.push({ day });
-    }
-
-    console.log(this.selectedShifts);
-  }
-
-  selectOption(option: string) {
-    this.selectedScheduleOption = option;
-  }
-
   routeToAdmin() {
     this.router.navigate(['/admin']);
   }
 
   isShiftSelected(day: string): boolean {
     return this.selectedShifts.some((shift) => shift.day === day);
-  }
-
-  sendShifts() {
-    this.success = true;
-    setTimeout(() => {
-      this.success = false;
-    }, 3000);
   }
 
   sendSwitchRequest() {
@@ -103,8 +74,27 @@ export class HomeComponent implements OnInit {
     }, 3000);
   }
 
+  sendShifts() {
+    // this.currentUser.selectedShifts = this.selectedShifts
+    this.userService.updateUserShifts(this.currentUser).subscribe({
+      next: (response) => {
+        this.success = true;
+        setTimeout(() => {
+          this.success = false;
+        }, 3000);
+      },
+      error: (error) => {
+        console.error('Error saving shifts:', error);
+      },
+    });
+  }
+
   logOut() {
     this.authService.logOut();
     this.router.navigate(['/login']);
+  }
+
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
   }
 }

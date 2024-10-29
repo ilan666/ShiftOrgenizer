@@ -101,7 +101,8 @@ input {
   color: $textColor;
   border: none;
   border-bottom: 1px solid $textColor;
-  background-color: $backgroundColor;
+  background-color: transparent;
+  direction: rtl;
 
   &:focus {
     border-bottom: 3px solid $primaryColor;

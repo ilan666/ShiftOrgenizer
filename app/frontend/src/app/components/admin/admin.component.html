@@ -13,17 +13,22 @@
       </ng-container>
     </section>
   </div>
-  <div class="admin-actions-container">
+  <div class="admin-actions-container" [ngClass]="{ openadminactions: isOpen }">
     <h5 style="text-decoration: underline">
       {{ currentUser.firstname }} {{ currentUser.lastname }}
     </h5>
-    <button class="primary-button" (click)="returnHome()">
+    <button
+      class="primary-button"
+      (click)="toggleMenu()"
+      (click)="returnHome()"
+    >
       חזרה לדף בית <i class="material-icons">home</i>
     </button>
     <button
       class="primary-button"
       routerLink="/admin/shifts"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       טבלת משמרות
       <i class="material-icons">calendar_month</i>
@@ -32,6 +37,7 @@
       class="primary-button"
       routerLink="/admin/add-user"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       הוספת משתמש <i class="material-icons">person_add</i>
     </button>
@@ -39,6 +45,7 @@
       class="primary-button"
       routerLink="/admin/edit-user"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       פעולות למשתמש <i class="material-icons">manage_accounts</i>
     </button>
@@ -46,6 +53,7 @@
       class="primary-button"
       routerLink="/admin/add-broadcast"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       הוספת הודעה לדף הבית <i class="material-icons">feedback</i>
     </button>
@@ -53,6 +61,7 @@
       class="primary-button"
       routerLink="/admin/switch-shifts"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       בקשות להחלפת משמרת <i class="material-icons">sync</i>
     </button>
@@ -60,8 +69,18 @@
       class="primary-button"
       routerLink="/admin/settings"
       routerLinkActive="active"
+      (click)="toggleMenu()"
     >
       הגדרות מערכת <i class="material-icons">settings</i>
     </button>
   </div>
+
+  <div class="burger-container">
+    <div class="menu-icon" (click)="toggleMenu()">
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+      <span class="bar" [ngClass]="{ open: isOpen }"></span>
+    </div>
+  </div>
+  <div class="page-fade" [ngClass]="{ adminactionsopen: isOpen }"></div>
 </div>

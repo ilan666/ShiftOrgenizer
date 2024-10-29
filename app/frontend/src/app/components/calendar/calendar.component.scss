@@ -1,0 +1,60 @@
+@import "../../../styles.scss";
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl; /* Ensure the whole table is RTL */
+}
+
+th,
+td {
+  width: 14.28%; /* 100% divided by 7 days */
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+td {
+  background-color: $textColor;
+}
+
+.current-day {
+  background-color: #ffeb3b; /* You can change this to any highlight color */
+  font-weight: bold;
+  border: 2px solid #f57c00;
+}
+
+.shiftBtn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .shiftBtn {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: darken($color: $textColor, $amount: 10) 1px solid;
+    padding: 4px;
+    transition: all 0.3s ease;
+    span {
+      height: 22px;
+    }
+    i {
+      font-size: 22px;
+    }
+
+    &:hover {
+      background-color: $accentColor;
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    background-color: $accentColor;
+  }
+}

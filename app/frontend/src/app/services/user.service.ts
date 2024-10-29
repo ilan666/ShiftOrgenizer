@@ -40,4 +40,8 @@ export class UserService {
   removeUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl + '/remove', user);
   }
+
+  updateUserShifts(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl + '/update-shifts', user);
+  }
 }

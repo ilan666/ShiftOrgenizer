@@ -75,6 +75,18 @@ th {
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: 1fr;
+
+  .shift-management-toggle-container {
+    padding: 32px;
+    margin: 0px 16px;
+    background-color: $secondaryColor;
+    border: 1px solid darken($color: $textColor, $amount: 10);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .primary-button {
@@ -90,5 +102,42 @@ th {
 
   &:hover {
     background-color: darken($color: rgb(203, 203, 203), $amount: 10);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  section {
+    padding: 32px 0px;
+  }
+
+  .table-commands-container {
+    height: fit-content;
+    grid-template-columns: 100%;
+    grid-template-rows: 70% 30%;
+    padding: 0px 48px;
+    gap: 64px;
+    margin-bottom: 96px;
+  }
+
+  .status-header-container {
+    h4,
+    h5 {
+      text-align: center;
+      direction: rtl;
+    }
+  }
+
+  .week-selector-container {
+    h4 {
+      font-size: 24px;
+      text-align: center;
+    }
+    button {
+      height: 55px;
+      width: 55px;
+    }
+    i {
+      font-size: 55px;
+    }
   }
 }

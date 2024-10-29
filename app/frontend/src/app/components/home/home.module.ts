@@ -8,6 +8,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule } from '@angular/forms';
 import { AnnouncerWindowComponent } from '../announcer-window/announcer-window.component';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { UserShiftManagementComponent } from './user-shift-management/user-shift-management.component';
+import { UserShiftDisplayComponent } from './user-shift-display/user-shift-display.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
@@ -23,6 +26,11 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     AnnouncerWindowComponent,
   ],
   exports: [RouterModule],
-  declarations: [HomeComponent],
+  declarations: [
+    HomeComponent,
+    CalendarComponent,
+    UserShiftManagementComponent,
+    UserShiftDisplayComponent,
+  ],
 })
 export class HomeModule {}

@@ -27,6 +27,7 @@ section {
   width: 100%;
   gap: 40px;
   margin: 64px 0px;
+  direction: rtl;
 
   li {
     width: 30%;
@@ -45,7 +46,7 @@ section {
       cursor: pointer;
     }
 
-    &:nth-of-type(4) {
+    &:nth-of-type(6) {
       background-color: #fba6ad;
       color: #333333;
 
@@ -137,4 +138,33 @@ section {
   height: 30px;
   border: 2px #333333 solid;
   display: inline-block;
+}
+
+@media only screen and (max-width: 480px) {
+  section {
+    padding: 64px 16px;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  .options {
+    padding: 0;
+    justify-content: space-between;
+
+    li {
+      font-size: 22px;
+      width: 100%;
+      direction: ltr;
+    }
+
+    .user-color {
+      margin-right: 16px;
+    }
+  }
 }

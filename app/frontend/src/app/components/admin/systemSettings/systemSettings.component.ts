@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from '../../../../appConfig';
 
 @Component({
   selector: 'app-systemSettings',
@@ -26,5 +27,34 @@ import { Component, OnInit } from '@angular/core';
 export class SystemSettingsComponent implements OnInit {
   constructor() {}
 
+  showChangeTimeSettings = false;
+  timeSetting = AppConfig.systemTimeTerm;
+  monthly = AppConfig.systemTimeTermOptions.Monthly;
+  weekly = AppConfig.systemTimeTermOptions.Weekly;
+  success = false;
+
   ngOnInit() {}
+
+  setSystemTimeSetting() {
+    if (this.timeSetting === AppConfig.systemTimeTermOptions.Monthly) {
+      AppConfig.systemTimeTerm = AppConfig.systemTimeTermOptions.Monthly;
+    } else if (this.timeSetting === AppConfig.systemTimeTermOptions.Weekly) {
+      AppConfig.systemTimeTerm = AppConfig.systemTimeTermOptions.Weekly;
+    }
+
+    this.showChangeTimeSettings = false;
+    this.success = true;
+
+    setTimeout(() => {
+      this.success = false;
+    }, 3000);
+  }
+
+  selectWeeklyOption() {
+    this.timeSetting = AppConfig.systemTimeTermOptions.Weekly;
+  }
+
+  selectMonthlyOption() {
+    this.timeSetting = AppConfig.systemTimeTermOptions.Monthly;
+  }
 }

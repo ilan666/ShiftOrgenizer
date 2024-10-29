@@ -1,0 +1,54 @@
+<table dir="rtl">
+  <thead>
+    <tr>
+      <th>ראשון</th>
+      <th>שני</th>
+      <th>שלישי</th>
+      <th>רביעי</th>
+      <th>חמישי</th>
+      <th>שישי</th>
+      <th>שבת</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="display === 'Monthly'">
+    <tr *ngFor="let week of calendar.months[nextMonth].weeks">
+      <td *ngFor="let day of week.days">
+        <span *ngIf="day.date">
+          {{ day.date.getDate() }}
+          <div class="shiftBtn-container">
+            <button
+              class="shiftBtn"
+              (click)="addShift($event, day.date.getDate(), 'בוקר')"
+            >
+              בוקר <span><i class="material-icons">check_circle</i></span>
+            </button>
+            <button
+              class="shiftBtn"
+              (click)="addShift($event, day.date.getDate(), 'ערב')"
+            >
+              ערב <span><i class="material-icons">check_circle</i></span>
+            </button>
+            <button
+              class="shiftBtn"
+              (click)="addShift($event, day.date.getDate(), 'לילה')"
+            >
+              לילה <span><i class="material-icons">check_circle</i></span>
+            </button>
+          </div>
+        </span>
+        <span *ngIf="!day.date">&nbsp;</span>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="display === 'Weekly'">
+    <tr>
+      <td
+        *ngFor="let day of getWeeklyView(currentYear, currentMonth)"
+        [class.current-day]="day.date?.getDate() === currentDate"
+      >
+        <span *ngIf="day.date">{{ day.date.getDate() }}</span>
+        <span *ngIf="!day.date">&nbsp;</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

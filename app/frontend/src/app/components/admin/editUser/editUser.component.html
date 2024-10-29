@@ -30,6 +30,7 @@
     }}</span>
   </h4>
   <ul class="options">
+    <li (click)="showUserInfo = true">הצג/שנה פרטי משתמש</li>
     <li>שנה סיסמה</li>
     <li (click)="showUserColor = true">
       <span
@@ -38,13 +39,12 @@
       ></span>
       שנה צבע
     </li>
-    <li (click)="showUserInfo = true">הצג/שנה פרטי משתמש</li>
-    <li (click)="removeUser()">מחק משתמש</li>
     <li>הצג פעילות</li>
     <li (click)="makeAsAdmin()" [ngClass]="{ highlight: isAdmin }">
       <span *ngIf="!isAdmin">הגדר כמנהל</span>
       <span *ngIf="isAdmin">הסר מנהל</span>
     </li>
+    <li (click)="removeUser()">מחק משתמש</li>
   </ul>
   <button class="primary-button" (click)="userExists = false">חזור</button>
 </section>

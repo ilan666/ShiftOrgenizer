@@ -11,10 +11,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .content-container {
   padding: 64px;
+  padding-top: 0px;
   text-align: center;
   width: 550px;
   background-color: rgba($color: $textColor, $alpha: 0.3);
@@ -23,6 +25,15 @@
 
   p {
     color: #fba6ad;
+  }
+
+  h5 {
+    color: darken($color: $textColor, $amount: 10);
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  a {
+    font-size: 20px;
   }
 }
 
@@ -40,11 +51,25 @@
   margin: 16px 0px 12px 0px;
 }
 
-.logo {
-  background-image: url("../../../../assets/app-logo.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 330px;
-  height: 200px;
+.logo-container {
+  display: flex;
+  justify-content: center;
+  .logo {
+    background-image: url("../../../../assets/Shifter-logo-big.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 270px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .content-container {
+    width: auto;
+
+    h5 {
+      margin-top: 20px;
+    }
+  }
 }

@@ -42,6 +42,7 @@
 
     h4 {
       color: #333333;
+      direction: rtl;
     }
 
     .primary-button {
@@ -60,4 +61,17 @@
 
 .red-icon {
   color: red !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .success-window-container {
+    .success-window {
+      padding: 16px;
+      margin: 0px 16px;
+
+      h4 {
+        font-size: 26px;
+      }
+    }
+  }
 }

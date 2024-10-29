@@ -3,10 +3,55 @@
   <h4>הגדרות מערכת</h4>
   <ul class="options">
     <li>פעולה 3</li>
-    <li>פעולה 2</li>
+    <li (click)="showChangeTimeSettings = true">תצוגת תאריכים</li>
     <li>שנה שעות משמרת</li>
     <li>פעולה 6</li>
     <li>פעולה 5</li>
     <li>פעולה 4</li>
   </ul>
+  <div @fadeUp *ngIf="showChangeTimeSettings" class="window-container">
+    <div class="window-content">
+      <button
+        class="close-button"
+        (click)="showChangeTimeSettings = !showChangeTimeSettings"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <h4>בחר תצוגה</h4>
+      <button
+        class="timeBtn"
+        (click)="selectWeeklyOption()"
+        [ngClass]="{ active: timeSetting === weekly }"
+      >
+        שבועי
+        <i *ngIf="timeSetting === weekly" class="material-icons check"
+          >check_circle</i
+        >
+        <i *ngIf="timeSetting === monthly" class="material-icons circle"
+          >circle</i
+        >
+      </button>
+      <button
+        class="timeBtn"
+        (click)="selectMonthlyOption()"
+        [ngClass]="{ active: timeSetting === monthly }"
+      >
+        חודשי
+        <i *ngIf="timeSetting == monthly" class="material-icons check"
+          >check_circle</i
+        >
+        <i *ngIf="timeSetting == weekly" class="material-icons circle"
+          >circle</i
+        >
+      </button>
+      <button class="primary-button" (click)="setSystemTimeSetting()">
+        שמור
+      </button>
+    </div>
+  </div>
 </section>
+
+<app-announcer-window
+  [message]="'זמן תוכנית שונה ל' + timeSetting"
+  [show]="success"
+></app-announcer-window>

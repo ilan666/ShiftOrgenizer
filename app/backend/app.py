@@ -7,29 +7,15 @@ from sqlalchemy.exc import SQLAlchemyError
 import bcrypt
 from jwtService import generate_token, decode_token, token_required
 import os
+from models import db, User, CalendarEntry, Shift
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shiftwise.db'
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default_secret_key') # is this ok? <-
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(50))
-    lastname = db.Column(db.String(50))
-    username = db.Column(db.String(50), unique=True)
-    phone = db.Column(db.Integer)
-    password = db.Column(db.String(60))
-    selectedShifts = db.Column(db.String(200))
-    currentShifts = db.Column(db.String(200))
-    color = db.Column(db.String(20))
-    isAdmin = db.Column(db.Boolean, default=False, nullable=False)
-    totalShifts = db.Column(db.Integer)
-    totalSwitchRequests = db.Column(db.Integer)
-    totalAcceptedSwitchRequests = db.Column(db.Integer)
+db.init_app(app)
 
 @app.route('/api/users', methods=['POST'])
 def create_user():
@@ -166,7 +152,60 @@ def remove_user():
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
     
+@app.route('/api/users/update-shifts', methods=['POST'])
+def update_user_shifts():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        shifts = data.get('selectedShifts', [])
+
+        # Retrieve the user
+        user = User.query.filter(func.lower(User.username) == username.lower()).first()
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+
+        # Update user's selected shifts
+        user.selectedShifts = str(shifts)
+
+        # Here you could also update or log to the overall shifts database
+        # For this example, converting shifts to string is simple; adapt as needed for complex data
+
+        db.session.commit()
+        return jsonify({'message': f'Shifts updated for user {username}'}), 200
+
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        return jsonify({'error': f'Database error: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'error': 'An error occurred while saving shifts'}), 500
+  
+def add_admin_user():
+    with app.app_context():
+        # Hash the password securely
+        password = 'admin'
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        new_admin = User(
+            firstname='Admin',
+            lastname='admiN',
+            username='admin',
+            phone=123456789,
+            password=hashed_password,
+            selectedShifts='',
+            currentShifts='',
+            color='#FFFFFF',
+            isAdmin=True,
+            totalShifts=0,
+            totalSwitchRequests=0,
+            totalAcceptedSwitchRequests=0
+        )
+
+        db.session.add(new_admin)
+        db.session.commit()
+        print("Admin user added successfully!")
+          
 if __name__ == '__main__':
     with app.app_context():  # Ensure we're in an app context
         db.create_all()  # Creates database tables, if not exists
+    # add_admin_user()
     app.run(debug=True)

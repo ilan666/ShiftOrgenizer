@@ -4,14 +4,31 @@
   <h5>לחץ על משמרת להצגת זמינות של עובדים</h5>
   <div class="table-container">
     <div class="table-commands-container">
-      <button
-        class="primary-button"
-        (click)="openShifts()"
-        [ngClass]="{ openShifts: isShiftsOpen }"
-      >
-        <p *ngIf="!isShiftsOpen">פתח אילוצים</p>
-        <p *ngIf="isShiftsOpen">סגור אילוצים</p>
-      </button>
+      <div class="shift-management-toggle-container">
+        <div class="status-header-container">
+          <h5>סטטוס קליטת אילוצים:</h5>
+          <h4
+            *ngIf="isShiftsOpen"
+            style="color: #b5ca8d; text-decoration: underline; margin-top: 8px"
+          >
+            פתוח
+          </h4>
+          <h4
+            *ngIf="!isShiftsOpen"
+            style="color: #fba6ad; text-decoration: underline; margin-top: 8px"
+          >
+            סגור
+          </h4>
+        </div>
+        <button
+          class="primary-button"
+          (click)="openShifts()"
+          [ngClass]="{ openShifts: isShiftsOpen }"
+        >
+          <p *ngIf="!isShiftsOpen">פתח אילוצים</p>
+          <p *ngIf="isShiftsOpen">סגור אילוצים</p>
+        </button>
+      </div>
       <div class="week-selector-container">
         <button><i class="material-icons">arrow_forward_ios</i></button>
         <h4>

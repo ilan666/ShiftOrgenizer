@@ -26,6 +26,8 @@ export class AdminComponent implements OnInit {
 
   currentUser: User;
 
+  isOpen = false;
+
   ngOnInit() {
     this.getUser();
   }
@@ -48,5 +50,9 @@ export class AdminComponent implements OnInit {
 
   isAdminOnly() {
     return this.router.url === '/admin';
+  }
+
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
   }
 }
