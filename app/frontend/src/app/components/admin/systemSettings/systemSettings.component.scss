@@ -18,6 +18,7 @@ section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  direction: rtl;
   width: 100%;
   gap: 40px;
   margin: 64px 0px;
@@ -60,8 +61,8 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 550px;
     position: relative;
+    width: 550px;
 
     h4 {
       color: #333333;
@@ -124,5 +125,41 @@ section {
 
   &:hover {
     background-color: $primaryColor !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  section {
+    padding: 64px 16px;
+  }
+
+  .options {
+    padding: 0;
+    justify-content: space-between;
+
+    li {
+      width: 100%;
+    }
+  }
+
+  .window-container {
+    .window-content {
+      width: 250px;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1024px) {
+  .options {
+    padding: 0;
+    justify-content: space-between;
+
+    li {
+      width: 45%;
+    }
+
+    .user-color {
+      margin-right: 16px;
+    }
   }
 }

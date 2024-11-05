@@ -3,6 +3,28 @@
 .page-container {
   padding: 100px 0px;
   position: relative;
+  overflow: hidden;
+}
+
+button {
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  i {
+    font-size: 48px;
+    color: #f4f4f4;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: orange;
+    }
+  }
 }
 
 .button-container {
@@ -11,33 +33,13 @@
   right: 0px;
   display: flex;
   flex-direction: column;
-  padding: 28px;
-
-  button {
-    width: fit-content;
-    background-color: transparent;
-    border: none;
-    padding: 20px;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    i {
-      font-size: 48px;
-      color: #f4f4f4;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: orange;
-      }
-    }
-  }
 
   .menu-icon {
     width: 35px;
     height: 30px;
-    position: relative;
+    position: fixed;
+    right: 28px;
+    top: 28px;
     cursor: pointer;
     display: none;
   }
@@ -191,11 +193,42 @@ mat-icon {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5px);
-  z-index: 999;
+  z-index: 104;
 }
 
 .page-fade.opensidebar {
   display: block;
+}
+
+.sidemenu-bar {
+  display: none;
+}
+
+.sidemenu-bar {
+  background-color: $primaryColor;
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-top: 80px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 105;
+  width: fit-content;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidemenu-bar.opensidebar {
+  transform: translateX(0%);
+}
+
+.sidemenu-admin-button,
+.sidemenu-logout-button {
+  i {
+    color: #333333;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -218,52 +251,38 @@ mat-icon {
     }
   }
 
+  .admin-button,
+  .logout-button {
+    display: none;
+  }
+
   .sidemenu-bar {
-    background-color: $primaryColor;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    right: 0;
-    padding-top: 80px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
+    display: flex;
   }
 
-  .sidemenu-bar.opensidebar {
-    transform: translateX(0%);
-  }
-
-  .sidemenu-admin-button,
-  .sidemenu-logout-button {
-    i {
-      color: #333333;
+  .broadcast-container {
+    h5 {
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: underline;
     }
   }
+}
 
-  button {
-    width: fit-content;
-    background-color: transparent;
-    border: none;
-    padding: 20px;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    i {
-      font-size: 48px;
-      color: #f4f4f4;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: orange;
-      }
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .button-container {
+    .menu-icon {
+      display: block;
+      z-index: 1001;
     }
   }
 
   .admin-button,
   .logout-button {
     display: none;
+  }
+
+  .sidemenu-bar {
+    display: flex;
   }
 }

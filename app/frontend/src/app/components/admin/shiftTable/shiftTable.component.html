@@ -2,97 +2,43 @@
   <i class="material-icons">calendar_month</i>
   <h4>השמת משמרות</h4>
   <h5>לחץ על משמרת להצגת זמינות של עובדים</h5>
-  <div class="table-container">
-    <div class="table-commands-container">
-      <div class="shift-management-toggle-container">
-        <div class="status-header-container">
-          <h5>סטטוס קליטת אילוצים:</h5>
-          <h4
-            *ngIf="isShiftsOpen"
-            style="color: #b5ca8d; text-decoration: underline; margin-top: 8px"
-          >
-            פתוח
-          </h4>
-          <h4
-            *ngIf="!isShiftsOpen"
-            style="color: #fba6ad; text-decoration: underline; margin-top: 8px"
-          >
-            סגור
-          </h4>
-        </div>
-        <button
-          class="primary-button"
-          (click)="openShifts()"
-          [ngClass]="{ openShifts: isShiftsOpen }"
+  <div class="shift-management-toggle-container">
+    <div class="status-header-container">
+      <h5>
+        סטטוס קליטת אילוצים:
+        <span
+          *ngIf="isShiftsOpen"
+          style="color: #b5ca8d; text-decoration: underline"
         >
-          <p *ngIf="!isShiftsOpen">פתח אילוצים</p>
-          <p *ngIf="isShiftsOpen">סגור אילוצים</p>
-        </button>
-      </div>
-      <div class="week-selector-container">
-        <button><i class="material-icons">arrow_forward_ios</i></button>
-        <h4>
-          מציג שבוע:
-          <span style="text-decoration: underline">תאריך - תאריך</span>
-        </h4>
-        <button><i class="material-icons">arrow_back_ios</i></button>
-      </div>
+          פתוח
+        </span>
+        <span
+          *ngIf="!isShiftsOpen"
+          style="color: #fba6ad; text-decoration: underline"
+        >
+          סגור
+        </span>
+      </h5>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>שבת</th>
-          <th>שישי</th>
-          <th>חמישי</th>
-          <th>רביעי</th>
-          <th>שלישי</th>
-          <th>שני</th>
-          <th>ראשון</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            בוקר
-            <div>8:00 - 16:00</div>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            ערב
-            <div>16:00 - 00:00</div>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            לילה
-            <div>00:00 - 24:00</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <button
+      class="primary-button"
+      (click)="openShifts()"
+      [ngClass]="{ openShifts: isShiftsOpen }"
+    >
+      <p *ngIf="!isShiftsOpen">פתח אילוצים</p>
+      <p *ngIf="isShiftsOpen">סגור אילוצים</p>
+    </button>
+  </div>
+  <div class="table-container">
+    <div class="week-selector-container">
+      <button><i class="material-icons">arrow_forward_ios</i></button>
+      <h4>
+        מציג שבוע: <br />
+        <span style="text-decoration: underline">תאריך - תאריך</span>
+      </h4>
+      <button><i class="material-icons">arrow_back_ios</i></button>
+    </div>
+    <div class="table"></div>
   </div>
 </section>
 

@@ -145,11 +145,7 @@
   z-index: 999;
 }
 
-.page-fade.adminactionsopen {
-  display: block;
-}
-
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 426px) {
   .page-container {
     display: grid;
     grid-template-columns: 100%;
@@ -179,7 +175,7 @@
     height: auto;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 10px;
     padding: 16px 0px;
     justify-content: center;
     box-shadow: none;
@@ -194,10 +190,90 @@
       font-size: 18px;
       height: auto;
       flex-direction: column-reverse;
-      padding: 0;
+      padding: 10px;
       max-width: 100px;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
       border-radius: 10px;
+      line-height: 18px;
     }
+  }
+
+  .page-fade.adminactionsopen {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 769px) {
+  .page-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+
+    .content-container {
+      grid-row: 2/3;
+    }
+  }
+
+  section {
+    padding: 32px 0px;
+  }
+
+  .burger-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    grid-row: 1/2;
+  }
+
+  .burger-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    grid-row: 1/2;
+  }
+
+  .admin-actions-container {
+    direction: rtl;
+    position: absolute;
+    top: 9.9%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 16px 16px;
+    justify-content: center;
+    box-shadow: none;
+    transform: translateY(-100%);
+    transition: all 0.3s ease;
+
+    h5 {
+      display: none;
+    }
+
+    button {
+      font-size: 18px;
+      height: auto;
+      flex-direction: column-reverse;
+      padding: 10px;
+      max-width: 126px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
+
+  .page-fade.adminactionsopen {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  button {
+    padding: 16px 16px !important;
+    text-align: right;
+    font-size: 20px;
   }
 }

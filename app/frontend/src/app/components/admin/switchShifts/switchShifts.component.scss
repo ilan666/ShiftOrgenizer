@@ -24,6 +24,7 @@ section {
 }
 
 .request-card {
+  direction: rtl;
   padding: 16px;
   border-radius: 10px;
   background-color: $accentColor;
@@ -88,9 +89,7 @@ section {
 }
 
 .filter {
-  position: absolute;
-  top: 240px;
-  left: 70px;
+  margin: 32px 0;
   border: 2px solid $primaryColor;
   background-color: transparent;
   color: $textColor;
@@ -98,5 +97,37 @@ section {
   &:hover {
     background-color: $primaryColor;
     color: #333333;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  section {
+    padding: 64px 16px;
+    text-align: center;
+  }
+
+  .requests-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .request-card {
+    h5 {
+      color: darken($color: $textColor, $amount: 10);
+      text-decoration: underline;
+      font-size: 18px;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .requests-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .requests-container {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
